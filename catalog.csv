@@ -1,4 +1,8 @@
-ID,GroupID,Item,Price,Size,ColorThumb,Image1,Image2,Image3,Image4,Description
-M001,G001,Silk Kurta - Blue,2499,M/L/XL,thumb-blue.jpg,blue1.jpg,blue2.jpg,blue3.jpg,,Premium blue silk blend.
-M002,G001,Silk Kurta - Red,2499,M/L/XL,thumb-red.jpg,red1.jpg,red2.jpg,,,Rich red silk blend.
-M003,G002,Ivory Sherwani,8999,L/XL/XXL,thumb-ivory.jpg,ivory1.jpg,ivory2.jpg,,,Classic ivory sherwani.
+StyleCode,ColorCode,Name,Price,Size,ColorThumb,Image1,Image2,Image3,Image4,Description
+MAA-APPLIC,MAA-APPLIC-BLU,Rajbari Royale Punjabi - Blue,1999,M/L/XL/XXL,blue.jpeg,maa-applic-blue1.jpeg,,,,Elegant blue Punjabi with intricate appliqué work.
+MAA-APPLIC,MAA-APPLIC-PNK,Rajbari Royale Punjabi - Pink,1999,M/L/XL/XXL,pink.jpeg,maa-applic-pink1.jpeg,,,,Elegant pink Punjabi with intricate appliqué work.
+MAA-APPLIC,MAA-APPLIC-GRN,Rajbari Royale Punjabi - Green,1999,M/L/XL/XXL,green.jpeg,maa-applic-green1.jpeg,,,,Elegant green Punjabi with intricate appliqué work.
+MAA-APPLIC,MAA-APPLIC-RED,Rajbari Royale Punjabi - Red,1999,M/L/XL/XXL,red.jpeg,maa-applic-red1.jpeg,,,,Elegant red Punjabi with intricate appliqué work.
+MAA-APPLIC,MAA-APPLIC-WHT,Rajbari Royale Punjabi - White,1999,M/L/XL/XXL,white.jpeg,maa-applic-white1.jpeg,,,,Elegant white Punjabi with intricate appliqué work.
+MAA-APPLIC,MAA-APPLIC-BEG,Rajbari Royale Punjabi - Beige,1999,M/L/XL/XXL,beige.jpeg,maa-applic-beige1.jpeg,,,,Elegant beiges Punjabi with intricate appliqué work.
+

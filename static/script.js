@@ -4,11 +4,11 @@ window.swapImage = function(src) {
     document.getElementById('main-detail-image').src = src;
 };
 
-// Homepage grid variant swapper
-window.changeCardVariant = function(groupId, imgUrl, productId) {
-    document.getElementById('card-img-' + groupId).src = './static/' + imgUrl;
-    document.getElementById('card-link-' + groupId).href = 'product.html?id=' + productId;
-    document.getElementById('quick-view-' + groupId).href = 'product.html?id=' + productId;
+// Homepage grid variant swapper (Updated for StyleCode and ColorCode)
+window.changeCardVariant = function(styleCode, imgUrl, colorCode) {
+    document.getElementById('card-img-' + styleCode).src = './static/' + imgUrl;
+    document.getElementById('card-link-' + styleCode).href = 'product.html?id=' + colorCode;
+    document.getElementById('quick-view-' + styleCode).href = 'product.html?id=' + colorCode;
 };
 
 window.shareProduct = function(title) {
@@ -30,7 +30,7 @@ function ensureLightboxExists() {
         <style>
             #lightbox-modal {
                 display: none; position: fixed; z-index: 999999; left: 0; top: 0;
-                width: 100%; height: 100%; background-color: rgba(13, 17, 29, 0.98);
+                width: 100%; height: 100%; background-color: rgba(42, 40, 37, 0.98); /* Updated to Charcoal */
                 flex-direction: column; justify-content: center; align-items: center; padding: 40px 0; box-sizing: border-box;
             }
             .close-lightbox {
@@ -55,11 +55,10 @@ function ensureLightboxExists() {
                 width: 60px; height: 80px; object-fit: cover; cursor: pointer;
                 opacity: 0.6; border: 2px solid transparent; transition: opacity 0.3s;
             }
-            .lightbox-thumbnails img.active, .lightbox-thumbnails img:hover { opacity: 1; border-color: #c5a059; }
+            .lightbox-thumbnails img.active, .lightbox-thumbnails img:hover { opacity: 1; border-color: var(--copper); }
             @media (max-width: 768px) { .lightbox-nav { display: none; } }
         </style>`;
 
-        // Removed ondblclick zoom trigger entirely
         const modalHtml = `
         <div id="lightbox-modal">
             <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
@@ -150,15 +149,17 @@ Papa.parse("./catalog.csv", {
     download: true,
     header: true,
     complete: function(results) {
-        const allProducts = results.data.filter(item => item.ID); 
+        // Changed item.ID to item.ColorCode
+        const allProducts = results.data.filter(item => item.ColorCode); 
         
         // --- JOB 1: THE GRID ---
         const gridContainer = document.getElementById('catalog-container');
         if (gridContainer) {
             const groupedProducts = {};
             allProducts.forEach(p => {
-                if (!groupedProducts[p.GroupID]) groupedProducts[p.GroupID] = [];
-                groupedProducts[p.GroupID].push(p);
+                // Changed GroupID to StyleCode
+                if (!groupedProducts[p.StyleCode]) groupedProducts[p.StyleCode] = [];
+                groupedProducts[p.StyleCode].push(p);
             });
 
             const limit = gridContainer.getAttribute('data-limit');
@@ -172,23 +173,24 @@ Papa.parse("./catalog.csv", {
                 let circlesHtml = '';
                 if (group.length > 1) {
                     group.forEach(variant => {
-                        circlesHtml += `<img src="./static/${variant.ColorThumb}" class="color-circle" onmouseover="changeCardVariant('${defaultItem.GroupID}', '${variant.Image1}', '${variant.ID}')" onclick="changeCardVariant('${defaultItem.GroupID}', '${variant.Image1}', '${variant.ID}')">`;
+                        circlesHtml += `<img src="./static/${variant.ColorThumb}" class="color-circle" onmouseover="changeCardVariant('${defaultItem.StyleCode}', '${variant.Image1}', '${variant.ColorCode}')" onclick="changeCardVariant('${defaultItem.StyleCode}', '${variant.Image1}', '${variant.ColorCode}')">`;
                     });
                 }
 
                 html += `
                 <div class="product-card">
                     <div class="image-container">
-                        <a href="product.html?id=${defaultItem.ID}" id="card-link-${defaultItem.GroupID}">
-                            <img src="./static/${defaultItem.Image1}" alt="${defaultItem.Item}" class="product-image" id="card-img-${defaultItem.GroupID}">
+                        <a href="product.html?id=${defaultItem.ColorCode}" id="card-link-${defaultItem.StyleCode}">
+                            <img src="./static/${defaultItem.Image1}" alt="${defaultItem.Name}" class="product-image" id="card-img-${defaultItem.StyleCode}">
                         </a>
                         <div class="quick-view">
-                            <a href="product.html?id=${defaultItem.ID}" id="quick-view-${defaultItem.GroupID}">View Details</a>
+                            <a href="product.html?id=${defaultItem.ColorCode}" id="quick-view-${defaultItem.StyleCode}">View Details</a>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="color-options">${circlesHtml}</div>
-                        <h3>${defaultItem.Item.split('-')[0]}</h3>
+                        <!-- Changed Item to Name -->
+                        <h3>${defaultItem.Name.split('-')[0]}</h3>
                         <div class="price">₹${defaultItem.Price}</div>
                     </div>
                 </div>
@@ -202,18 +204,21 @@ Papa.parse("./catalog.csv", {
         if (detailContainer) {
             const urlParams = new URLSearchParams(window.location.search);
             const targetId = urlParams.get('id');
-            const product = allProducts.find(item => item.ID === targetId);
+            // Changed ID to ColorCode
+            const product = allProducts.find(item => item.ColorCode === targetId);
 
             if (product) {
-                const siblings = allProducts.filter(item => item.GroupID === product.GroupID);
+                // Changed GroupID to StyleCode
+                const siblings = allProducts.filter(item => item.StyleCode === product.StyleCode);
                 
                 let colorsHtml = '';
                 if (siblings.length > 1) {
                     colorsHtml += `<span class="color-label">Available Colors</span><div class="color-options product-detail-colors">`;
                     siblings.forEach(sib => {
-                        const activeClass = sib.ID === product.ID ? 'active' : '';
-                        colorsHtml += `<a href="product.html?id=${sib.ID}">
-                                        <img src="./static/${sib.ColorThumb}" class="color-circle ${activeClass}" title="${sib.Item}">
+                        // Changed ID to ColorCode and Item to Name
+                        const activeClass = sib.ColorCode === product.ColorCode ? 'active' : '';
+                        colorsHtml += `<a href="product.html?id=${sib.ColorCode}">
+                                        <img src="./static/${sib.ColorThumb}" class="color-circle ${activeClass}" title="${sib.Name}">
                                        </a>`;
                     });
                     colorsHtml += `</div>`;
@@ -229,16 +234,17 @@ Papa.parse("./catalog.csv", {
                     <div class="product-detail-layout">
                         <div class="detail-image-box">
                             <div class="main-image-container" style="position: relative;">
-                                <div class="floating-share" onclick="shareProduct('${product.Item}')" title="Share">
+                                <div class="floating-share" onclick="shareProduct('${product.Name}')" title="Share">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                 </div>
-                                <img src="./static/${product.Image1}" alt="${product.Item}" class="full-size-image" id="main-detail-image" onclick="openLightbox()" style="cursor: pointer;">
+                                <img src="./static/${product.Image1}" alt="${product.Name}" class="full-size-image" id="main-detail-image" onclick="openLightbox()" style="cursor: pointer;">
                             </div>
                             <div class="thumbnail-gallery">${galleryHtml}</div>
                         </div>
                         
                         <div class="detail-info-box">
-                            <h1>${product.Item}</h1>
+                            <!-- Changed Item to Name -->
+                            <h1>${product.Name}</h1>
                             <div class="detail-price">₹${product.Price}</div>
                             
                             ${colorsHtml}
@@ -246,7 +252,7 @@ Papa.parse("./catalog.csv", {
                             <p class="detail-description">${product.Description}</p>
                             <div class="detail-sizes">Available Sizes: <strong>${product.Size}</strong></div>
                             
-                            <a href="https://wa.me/918697430937?text=Hi Shikara! I want to buy the ${product.Item} (ID: ${product.ID})." class="buy-now-btn" target="_blank">
+                            <a href="https://wa.me/919038850577?text=Hi Shikara! I want to buy the ${product.Name} (ID: ${product.ColorCode})." class="buy-now-btn" target="_blank">
                                 Buy via WhatsApp
                             </a>
                         </div>
