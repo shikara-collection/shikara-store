@@ -145,7 +145,11 @@ window.handleTouchEnd = (e) => {
 };
 
 // --- THE CORE PARSER ---
-Papa.parse("./catalog.csv", {
+
+// This creates a unique number every millisecond (e.g., 1689182390123) and adds it to the URL
+const csvUrl = "./catalog.csv?v=" + new Date().getTime();
+
+Papa.parse(csvUrl, {
     download: true,
     header: true,
     complete: function(results) {
