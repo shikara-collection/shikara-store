@@ -1,0 +1,4 @@
+ID,GroupID,Item,Price,Size,ColorThumb,Image1,Image2,Image3,Image4,Description
+M001,G001,Silk Kurta - Blue,2499,M/L/XL,thumb-blue.jpg,blue1.jpg,blue2.jpg,blue3.jpg,,Premium blue silk blend.
+M002,G001,Silk Kurta - Red,2499,M/L/XL,thumb-red.jpg,red1.jpg,red2.jpg,,,Rich red silk blend.
+M003,G002,Ivory Sherwani,8999,L/XL/XXL,thumb-ivory.jpg,ivory1.jpg,ivory2.jpg,,,Classic ivory sherwani.

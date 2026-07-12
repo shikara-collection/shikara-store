@@ -1,0 +1,538 @@
+/* 1. BRAND COLORS & TYPOGRAPHY */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* The New Premium Copper & Cream Palette */
+    --cream-bg: #F8F6F0; /* Perfectly matches your logo's background */
+    --charcoal: #2A2825; /* A deep, rich espresso/charcoal for text */
+    --copper: #B8735C;   /* The metallic accent color from the boat */
+    --text-muted: #7A7571;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cream-bg); /* Sets the whole site to the luxury cream */
+    color: var(--charcoal);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 2. HEADER */
+header {
+    background-color: var(--cream-bg);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* A subtle copper border instead of grey */
+    border-bottom: 1px solid rgba(184, 115, 92, 0.2); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
+}
+
+.logo-img {
+    height: 60px; /* Slightly larger to show off the new details */
+    object-fit: contain;
+    
+    /* THE MAGIC BLEND TRICK: This makes the logo's background vanish */
+    /* mix-blend-mode: multiply; */
+}
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--charcoal); /* Dark text on the light background */
+    font-size: 0.85em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--copper);
+}
+
+/* Mobile Header Layout */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stacks the items vertically */
+        padding: 20px 10px 15px 10px;
+    }
+    
+    .logo-img {
+        margin-bottom: 15px; /* Adds breathing room below the logo */
+        height: 55px;
+    }
+    
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* Allows links to wrap safely if needed */
+        gap: 20px; /* Creates perfect, even spacing between the words */
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin-left: 0; /* Removes the heavy desktop spacing so it centers perfectly */
+        font-size: 0.75em; /* Slightly smaller text for mobile elegance */
+    }
+}
+
+/* 3. HERO BANNER */
+.hero {
+    background-color: var(--charcoal); /* A clean, solid dark background */
+    /* background-image has been completely removed */
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    margin: 0 0 10px 0;
+    font-weight: 400;
+    color: var(--copper); /* Beautiful copper title */
+}
+.hero p {
+    font-size: 1em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    color: var(--cream-bg); /* Cream subtext for elegant contrast */
+}
+.shop-btn {
+    background-color: transparent;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid white;
+    transition: all 0.3s ease;
+}
+.shop-btn:hover {
+    background-color: white;
+    color: var(--charcoal);
+}
+
+/* 4. PRODUCT GRID - THE SOJANYA LOOK */
+.collection-header {
+    text-align: center;
+    margin: 80px 0 50px 0;
+}
+.collection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: 400;
+}
+.divider {
+    width: 60px;
+    height: 2px;
+    background-color: var(--copper);
+    margin: 20px auto 0 auto;
+}
+
+.catalog-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px; /* More vertical space between rows */
+    justify-content: center;
+    padding: 0 5%;
+    margin-bottom: 100px;
+}
+.product-card {
+    width: 320px; /* Elegant, tall cards */
+    text-align: center; /* Center-aligned minimalist text */
+}
+
+/* The Image Container (Grid) */
+.image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.product-image {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Portrait vertical ratio */
+    object-fit: cover; /* Fills the box edge-to-edge, removing white space */
+    transition: transform 0.5s ease;
+    display: block;
+}
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* Sleek Hover Button replacing the clunky WhatsApp block */
+.quick-view {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 0;
+    transition: bottom 0.3s ease;
+}
+.quick-view a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.product-card:hover .quick-view {
+    bottom: 0; /* Slides up smoothly over the image */
+}
+
+/* Minimalist Typography below the image */
+.category {
+    color: var(--text-muted);
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+.product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    margin: 0 0 8px 0;
+    font-weight: 400;
+}
+.price {
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+.size {
+    font-size: 0.8em;
+    color: var(--text-muted);
+}
+/* 5. FOOTER */
+footer {
+    background-color: var(--charcoal);
+    color: white;
+    padding: 60px 5% 20px 5%;
+    font-family: 'Montserrat', sans-serif;
+}
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.footer-brand, .footer-links, .footer-contact {
+    flex: 1;
+    min-width: 250px;
+}
+.footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--copper);
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+.footer-brand p {
+    color: #a0aabf;
+    line-height: 1.6;
+    font-size: 0.9em;
+}
+.footer-links h3, .footer-contact h3 {
+    color: var(--copper);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.footer-links a {
+    display: block;
+    color: #a0aabf;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: white;
+}
+.footer-contact p {
+    color: #a0aabf;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 0.8em;
+    color: #777;
+}
+
+/* VIEW ALL BUTTON */
+.view-all-container {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.view-all-btn {
+    background-color: var(--charcoal);
+    color: white;
+    padding: 15px 45px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+.view-all-btn:hover {
+    background-color: var(--copper);
+}
+
+/* 6. LOADING STATE */
+#loader-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(13, 17, 29, 0.1); /* Faded navy background ring */
+    border-top: 3px solid var(--copper); /* Solid gold spinning top edge */
+    border-radius: 50%; /* Turns the square border into a perfect circle */
+    animation: spin 1s linear infinite; /* Tells the circle to rotate */
+}
+
+/* The math for the rotation animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 7. SINGLE PRODUCT PAGE DETAILS */
+.detail-wrapper {
+    max-width: 1200px;
+    margin: 60px auto 100px auto;
+    padding: 0 5%;
+}
+.product-detail-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: flex-start;
+}
+.detail-image-box {
+    flex: 1;
+    min-width: 300px;
+}
+.full-size-image {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Portrait vertical ratio */
+    object-fit: cover; /* Fills the box edge-to-edge */
+    display: block;
+}
+
+/* The New Gallery Thumbnails */
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+.thumbnail {
+    width: 80px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+.thumbnail:hover {
+    border-color: var(--copper);
+}
+
+.detail-info-box {
+    flex: 1;
+    min-width: 300px;
+    padding-top: 20px;
+}
+
+.detail-info-box h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin: 0 0 15px 0;
+    font-weight: 400;
+}
+
+.detail-price {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--copper);
+    margin-bottom: 25px;
+}
+
+.detail-description {
+    font-size: 1em;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.detail-sizes {
+    font-size: 0.95em;
+    margin-bottom: 40px;
+    padding: 15px;
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    display: inline-block;
+}
+
+.buy-now-btn {
+    display: inline-block;
+    background-color: var(--charcoal);
+    color: white;
+    padding: 18px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.buy-now-btn:hover {
+    background-color: var(--copper);
+}
+
+/* Mobile Responsiveness adjustments */
+@media (max-width: 768px) {
+    .product-detail-layout {
+        gap: 30px;
+    }
+    .detail-info-box h1 {
+        font-size: 2em;
+    }
+}
+
+/* 8. SHARE BUTTON & LIGHTBOX MODAL */
+
+/* Floating Share Button */
+.floating-share {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 10;
+}
+.floating-share:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.floating-share svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--charcoal);
+}
+
+/* The Zoomable Container */
+.lightbox-content {
+    width: 100%;
+    max-width: 600px;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+    transition: transform 0.3s ease; /* Smooth transition for double-click */
+}
+
+/* Desktop Navigation Arrows */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    user-select: none;
+    padding: 20px;
+    z-index: 10001;
+    transition: color 0.3s;
+}
+.lightbox-nav:hover {
+    color: var(--copper);
+}
+.nav-left { left: 10px; }
+.nav-right { right: 10px; }
+
+/* Hide arrows on mobile so users just swipe */
+@media (max-width: 768px) {
+    .lightbox-nav { display: none; }
+}
+
+/* 9. COLOR VARIANT CIRCLES */
+.color-options {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.color-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 2px;
+    transition: border-color 0.3s, transform 0.2s;
+}
+.color-circle:hover, .color-circle.active {
+    border-color: var(--charcoal);
+    transform: scale(1.1);
+}
+
+/* Larger circles for the product detail page */
+.product-detail-colors {
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+.product-detail-colors .color-circle {
+    width: 35px;
+    height: 35px;
+}
+.color-label {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
